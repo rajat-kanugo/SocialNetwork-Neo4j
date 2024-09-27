@@ -1,0 +1,18 @@
+= Social Network Graph Example 
+
+== Social Network Setup
+
+// setup
+// hide
+
+[source,cypher]
+----
+CREATE (rachel:User {name: "Rachel Green"})
+CREATE (monica:User {name: "Monica Geller"})
+CREATE (phoebe:User {name: "Phoebe Buffay"})
+CREATE (joey:User {name: "Joey Tribbiani"})
+CREATE (chandler:User {name: "Chandler Bing"})
+CREATE (ross:User {name: "Ross Geller"})
+
+
+
