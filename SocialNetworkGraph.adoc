@@ -14,5 +14,51 @@ CREATE (joey:User {name: "Joey Tribbiani"})
 CREATE (chandler:User {name: "Chandler Bing"})
 CREATE (ross:User {name: "Ross Geller"})
 
+CREATE (rachel)-[:FRIEND]->(monica)
+CREATE (rachel)-[:FRIEND]->(phoebe)
+CREATE (rachel)-[:FRIEND]->(joey)
+CREATE (rachel)-[:FRIEND]->(chandler)
+CREATE (rachel)-[:FRIEND]->(ross)
+
+CREATE (monica)-[:FRIEND]->(phoebe)
+CREATE (monica)-[:FRIEND]->(joey)
+CREATE (monica)-[:FRIEND]->(chandler)
+CREATE (monica)-[:FRIEND]->(ross)
+
+CREATE (phoebe)-[:FRIEND]->(joey)
+CREATE (phoebe)-[:FRIEND]->(chandler)
+CREATE (phoebe)-[:FRIEND]->(ross)
+
+CREATE (joey)-[:FRIEND]->(chandler)
+CREATE (joey)-[:FRIEND]->(ross)
+
+CREATE (chandler)-[:FRIEND]->(ross)
+
+CREATE (monica)-[:POSTED]->(post0:Post { id: "0", text: "You don't like the game, because you suck at it." })
+CREATE (phoebe)-[:POSTED]->(post1:Post { id: "1", text: "Chandler still thinks I'm pregnant and he hasn't asked me how I'm feeling or offered to carry my bags. I feel bad for the woman who ends up with him." })
+CREATE (joey)-[:POSTED]->(post2:Post { id: "2", text: "Just because she went to Yale drama, she thinks she's like the greatest actress since, since, sliced bread!" })
+CREATE (chandler)-[:POSTED]->(post3:Post { id: "3", text: " In my defense, it was dark and he was a very pretty guy." })
+CREATE (rachel)-[:POSTED]->(post4:Post { id: "4", text: "I don't want my baby's first words to be 'How You Doing'" })
+CREATE (ross)-[:POSTED]->(post5:Post { id: "5", text: "Chandler entered a Vanilla Ice look-alike contest and *won*!" })
+
+// Comments
+CREATE (post0)<-[:COMMENTED{ id: "6", text: "lol" }]-(ross)
+CREATE (post1)<-[:COMMENTED{ id: "7", text: "lol" }]-(rachel)
+CREATE (post2)<-[:COMMENTED{ id: "8", text: "lol" }]-(chandler)
+CREATE (post3)<-[:COMMENTED{ id: "9", text: "lol" }]-(joey)
+CREATE (post4)<-[:COMMENTED{ id: "10", text: "lol" }]-(phoebe)
+CREATE (post5)<-[:COMMENTED{ id: "11", text: "lol" }]-(monica)
+
+
+// Likes
+CREATE (post0)<-[:LIKED{ id: "12", text: "Ross likes this." }]-(ross)
+CREATE (post1)<-[:LIKED{ id: "13", text: "Rachel likes this." }]-(rachel)
+CREATE (post2)<-[:LIKED{ id: "14", text: "Chandler likes this." }]-(chandler)
+CREATE (post3)<-[:LIKED{ id: "15", text: "Joey likes this." }]-(joey)
+CREATE (post4)<-[:LIKED{ id: "16", text: "Phoebe likes this." }]-(phoebe)
+CREATE (post5)<-[:LIKED{ id: "17", text: "Monica likes this." }]-(monica)
+
+
+
 
 
