@@ -58,6 +58,43 @@ CREATE (post3)<-[:LIKED{ id: "15", text: "Joey likes this." }]-(joey)
 CREATE (post4)<-[:LIKED{ id: "16", text: "Phoebe likes this." }]-(phoebe)
 CREATE (post5)<-[:LIKED{ id: "17", text: "Monica likes this." }]-(monica)
 
+Now let's write some queries!
+
+We'll start with one to find the posts made by Rachel's friends:
+
+[source,cypher]
+----
+MATCH (u:User)-[:FRIEND]-(f)-[:POSTED]->(post)
+WHERE u.name = "Rachel Green"
+RETURN f.name AS friend, post.text as content
+----
+
+// table
+
+Our next query might be a slight variation on this to collect the people who have liked a post:
+
+[source,cypher]
+----
+MATCH (u:User)-[:FRIEND]-(f)-[:POSTED]->(post)<-[like:LIKED]-(liker)
+WHERE u.name = "Rachel Green"
+RETURN f.name AS friend, post.text as content, COLLECT(liker.name) as liked_by
+----
+
+// table
+
+A third query could collect all actions on a post, be they likes or comments:
+
+[source,cypher]
+----
+MATCH (u:User)-[:FRIEND]-(f)-[:POSTED]->(post)<-[a:LIKED|:COMMENTED]->(person) 
+WHERE u.name = "Rachel Green" 
+RETURN f.name AS friend, post.text AS content, 
+       COLLECT({ text: a.text, person: person.name, action: TYPE(a)}) AS actions
+----
+
+// table
+
+
 
 
 
